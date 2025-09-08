@@ -10,7 +10,9 @@ public class Film {
     private String inhalt;
     private LocalDateTime erscheinungsDatum;
 
-    public Film() {}
+    public Film() {
+    }
+
     public Film(int filmId, String titel, int dauer, int fsk, String inhalt, LocalDateTime erscheinungsDatum) {
         this.filmId = filmId;
         this.titel = titel;
@@ -27,7 +29,43 @@ public class Film {
     public String getTitel() {
         return titel;
     }
-    public void setTitel (String titel){
+
+    public void setTitel(String titel) {
         this.titel = titel;
+    }
+    public int getDauer() {
+        return dauer;
+    }
+    public void setDauer(int dauer) {
+        this.dauer = dauer;
+    }
+    public int getFsk() {
+        return fsk;
+    }
+    public void setFsk(int fsk) {
+        this.fsk = fsk;
+    }
+    public String getInhalt(){
+        return inhalt;
+    }
+    public void setInhalt (String inhalt){
+        this.inhalt = inhalt;
+    }
+    public LocaleDateTime getErscheinungsDatum() {
+        return erscheinungsDatum;
+    }
+    public void setErscheinungsDatum (LocalDateTime erscheinungsDatum){
+        this.erscheinungsDatum = erscheinungsDatum;
+    }
+    @override
+    public Strig toString() {
+        return "Film {" +
+        "filmId=" + this.getFilmId() +
+        ", Titel =" + this.getTitel() +
+        ", Dauer =" + this.getDauer() +
+        ", FSK =" + this.getFsk() +
+        ", Inhalt =" + this.getInhalt() +
+        ", Erscheinungsdatum =" + this.getErscheinungsDatum() +
+        "}";
     }
 }
