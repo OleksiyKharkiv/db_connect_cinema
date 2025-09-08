@@ -51,20 +51,19 @@ public class FilmService {
 
     public Film saveFilm(Film film) throws SQLException {
         dbConfig.initDatabaseConnection();
-        try (PreparedStatement statement = dbConfig.connection.prepareStatement("""
-                INSERT INTO film (titel, dauer, fsk_freigabe, inhalt, erscheinungsjahr)
-                VALUES ("""
-                        + film.getTitel() + "," 
+        try (PreparedStatement statement = dbConfig.connection.prepareStatement("INSERT INTO film (titel, dauer, fsk_freigabe, inhalt, erscheinungsjahr) VALUES(\""
+                        + film.getTitel() + "\"," 
                         + film.getDauer() + "," 
-                        + film.getFsk() + ",'"
-                        + film.getInhalt() + "','"
-                        + film.getErscheinungsDatum() 
-                        + ")" ) ) {
+                        + film.getFsk() + ","
+                        + "\""  + film.getInhalt() + "\"," 
+                        + "\"" + film.getErscheinungsDatum() 
+                        + "\")")) {
             // statement.setString(1, film.getTitel());
             // statement.setInt(2, film.getDauer());
             // statement.setInt(3, film.getFsk());
             // statement.setString(4, film.getInhalt());
             // statement.setDate(5, java.sql.Date.valueOf(film.getErscheinungsDatum()));
+            System.out.println(statement.toString());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

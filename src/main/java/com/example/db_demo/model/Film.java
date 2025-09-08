@@ -13,6 +13,14 @@ public class Film {
     public Film() {
     }
 
+    public Film(String titel, int dauer, int fsk, String inhalt, LocalDate erscheinungsDatum) {
+        this.titel = titel;
+        this.dauer = dauer;
+        this.fsk = fsk;
+        this.inhalt = inhalt;
+        this.erscheinungsDatum = erscheinungsDatum;
+    }
+
     public Film(Long filmId, String titel, int dauer, int fsk, String inhalt, LocalDate erscheinungsDatum) {
         this.filmId = filmId;
         this.titel = titel;
