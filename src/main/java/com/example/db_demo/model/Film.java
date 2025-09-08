@@ -1,19 +1,19 @@
 package com.example.db_demo.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Film {
-    private long filmId;
+    private Long filmId;
     private String titel;
     private int dauer;
     private int fsk;
     private String inhalt;
-    private LocalDateTime erscheinungsDatum;
+    private LocalDate erscheinungsDatum;
 
     public Film() {
     }
 
-    public Film(int filmId, String titel, int dauer, int fsk, String inhalt, LocalDateTime erscheinungsDatum) {
+    public Film(Long filmId, String titel, int dauer, int fsk, String inhalt, LocalDate erscheinungsDatum) {
         this.filmId = filmId;
         this.titel = titel;
         this.dauer = dauer;
@@ -22,7 +22,7 @@ public class Film {
         this.erscheinungsDatum = erscheinungsDatum;
     }
 
-    public long getFilmId() {
+    public Long getFilmId() {
         return filmId;
     }
 
@@ -58,11 +58,11 @@ public class Film {
         this.inhalt = inhalt;
     }
 
-    public LocalDateTime getErscheinungsDatum() {
+    public LocalDate getErscheinungsDatum() {
         return erscheinungsDatum;
     }
 
-    public void setErscheinungsDatum(LocalDateTime erscheinungsDatum) {
+    public void setErscheinungsDatum(LocalDate erscheinungsDatum) {
         this.erscheinungsDatum = erscheinungsDatum;
     }
 
