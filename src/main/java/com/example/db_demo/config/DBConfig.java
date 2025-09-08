@@ -18,6 +18,6 @@ public class DBConfig {
     public void closeDatabaseConnection() throws SQLException{
     System.out.println("Closing Database Connection...");
     connection.close();
-    System.out.println("Connection valid" + connection.isClosed()  );
+    System.out.println("Connection valid: " + connection.isClosed()  );
 }
 }

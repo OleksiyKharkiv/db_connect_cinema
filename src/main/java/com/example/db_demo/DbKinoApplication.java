@@ -32,7 +32,7 @@ public class DbKinoApplication {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace(); // лучше выводить стек
+            e.printStackTrace();
         } finally {
             dbConfig.closeDatabaseConnection();
         }
