@@ -1,28 +1,33 @@
 package com.example.db_demo.model;
 
+import java.time.LocalDateTime;
+
 public class Film {
-    private int film_id;
+    private long filmId;
     private String titel;
     private int dauer;
     private int fsk;
     private String inhalt;
-    private LocalDateTime erscheinungsdatum;
-    public Film() {}
+    private LocalDateTime erscheinungsDatum;
 
-    public Film(int film_id, String titel, int dauer, int fsk, String inhalt, LocalDateTime erscheinungsdatum) {
-        this.film_id = film_id;
+    public Film() {}
+    public Film(int filmId, String titel, int dauer, int fsk, String inhalt, LocalDateTime erscheinungsDatum) {
+        this.filmId = filmId;
         this.titel = titel;
         this.dauer = dauer;
         this.fsk = fsk;
         this.inhalt = inhalt;
-        this.erscheinungsdatum = erscheinungsdatum;
+        this.erscheinungsDatum = erscheinungsDatum;
     }
 
-    public int getFilmId() {
+    public long getFilmId() {
         return filmId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitel() {
+        return titel;
+    }
+    public void setTitel (String titel){
+        this.titel = titel;
     }
 }
