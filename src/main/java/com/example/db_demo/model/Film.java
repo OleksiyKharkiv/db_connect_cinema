@@ -33,39 +33,48 @@ public class Film {
     public void setTitel(String titel) {
         this.titel = titel;
     }
+
     public int getDauer() {
         return dauer;
     }
+
     public void setDauer(int dauer) {
         this.dauer = dauer;
     }
+
     public int getFsk() {
         return fsk;
     }
+
     public void setFsk(int fsk) {
         this.fsk = fsk;
     }
-    public String getInhalt(){
+
+    public String getInhalt() {
         return inhalt;
     }
-    public void setInhalt (String inhalt){
+
+    public void setInhalt(String inhalt) {
         this.inhalt = inhalt;
     }
-    public LocaleDateTime getErscheinungsDatum() {
+
+    public LocalDateTime getErscheinungsDatum() {
         return erscheinungsDatum;
     }
-    public void setErscheinungsDatum (LocalDateTime erscheinungsDatum){
+
+    public void setErscheinungsDatum(LocalDateTime erscheinungsDatum) {
         this.erscheinungsDatum = erscheinungsDatum;
     }
-    @override
-    public Strig toString() {
+
+    @Override
+    public String toString() {
         return "Film {" +
-        "filmId=" + this.getFilmId() +
-        ", Titel =" + this.getTitel() +
-        ", Dauer =" + this.getDauer() +
-        ", FSK =" + this.getFsk() +
-        ", Inhalt =" + this.getInhalt() +
-        ", Erscheinungsdatum =" + this.getErscheinungsDatum() +
-        "}";
+                "filmId=" + this.getFilmId() +
+                ", Titel =" + this.getTitel() +
+                ", Dauer =" + this.getDauer() +
+                ", FSK =" + this.getFsk() +
+                ", Inhalt =" + this.getInhalt() +
+                ", Erscheinungsdatum =" + this.getErscheinungsDatum() +
+                "}";
     }
 }
