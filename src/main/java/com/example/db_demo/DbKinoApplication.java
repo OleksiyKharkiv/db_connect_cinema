@@ -2,6 +2,7 @@ package com.example.db_demo;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -114,7 +115,15 @@ public class DbKinoApplication {
                 }
 
                 case 4 -> {
-                    List<Film> f = filmService.getFilmsByName("Matrix");
+                    System.out.println("Bitte geben Sie den Namen des Films ein, den Sie bearbeiten möchten:");
+                    List<Film> f = new ArrayList<>();
+                    try {
+                        f = filmService.getFilmsByName(scanner.nextLine());
+                    } catch (SQLException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
                     f.forEach(System.out::println);
                     System.out.println("Film bearbeiten:");
                     System.out.println("Bitte Film ID eingeben:");
