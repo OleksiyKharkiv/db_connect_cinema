@@ -2,6 +2,7 @@ package com.example.db_demo;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
@@ -45,12 +46,12 @@ public class DbKinoApplication {
                 System.out.println("Bitte option wählen:");
                 System.out.println("""
                         1: Film
-                        -1: Exit
+                        2: Exit
                         """);
                 int option = scanner.nextInt();
                 switch (option) {
                     case 1 -> filmSubMenu(filmService, scanner); // вызываем подменю
-                    case -1 -> {
+                    case 2 -> {
                         System.out.println("Exit");
                         exit = true;
                     }
@@ -62,7 +63,7 @@ public class DbKinoApplication {
 
     static void filmSubMenu(FilmService filmService, Scanner scanner) throws SQLException {
         boolean backToMenu = false;
-        while (!backToMenu) {
+        // while (!backToMenu) {
             System.out.println("Bitte machen Sie Ihre Wahl:");
             System.out.println("""
                     1: Alle Filme anzeigen
@@ -113,7 +114,11 @@ public class DbKinoApplication {
                 }
 
                 case 4 -> {
-                    // TODO: Film bearbeiten
+                    List<Film> f = filmService.getFilmsByName("Matrix");
+                    f.forEach(System.out::println);
+                    System.out.println("Film bearbeiten:");
+                    System.out.println("Bitte Film ID eingeben:");
+                    // TODO: Film bearbeiten1
                 }
                 case 5 -> {
                     // TODO: Film löschen
@@ -121,6 +126,6 @@ public class DbKinoApplication {
                 case 6 -> backToMenu = true; // возвращаемся в главное меню
                 default -> System.out.println("Ungültige Option");
             }
-        }
+        // }
     }
 }

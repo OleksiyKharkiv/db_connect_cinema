@@ -121,4 +121,40 @@ public class FilmService {
         }
         return film;
     }
+    public List<Film> getFilmsByName(String name) throws SQLException {
+        List<Film> filme = new ArrayList<>();
+        try {
+            dbConfig.initDatabaseConnection();
+            try (PreparedStatement statement = dbConfig.connection.prepareStatement("""
+                    SELECT *
+                    FROM film
+                    WHERE titel LIKE ?
+                    """)) {
+                statement.setString(1, "%"+name+"%");
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    Film film = new Film(
+                            resultSet.getLong("film_id"),
+                            resultSet.getString("titel"),
+                            resultSet.getInt("dauer"),
+                            resultSet.getInt("fsk_freigabe"),
+                            resultSet.getString("inhalt"),
+                            LocalDate.parse(resultSet.getDate("erscheinungsjahr").toString()));
+                    System.out.println(film.toString());
+                    filme.add(film);
+                    // int filmId = resultSet.getInt("film_id");
+                    // String titel = resultSet.getString("titel");
+                    // System.out.println(filmId + ": " + titel);
+                }
+            }
+        } catch (
+
+        Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConfig.closeDatabaseConnection();
+        }
+        return filme;
+    }
 }
