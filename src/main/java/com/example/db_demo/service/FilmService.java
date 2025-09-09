@@ -72,7 +72,7 @@ public class FilmService {
         return film;
     }
 
-    public Film getFilmByIdFilm(Long id) throws SQLException {
+    public Film getFilmById(Long id) throws SQLException {
         Film film = null;
         dbConfig.initDatabaseConnection();
         try (PreparedStatement statement = dbConfig.connection
@@ -99,7 +99,7 @@ public class FilmService {
     }
     public Film updateFilm(Long filmId, String attr, String value) throws SQLException {
         dbConfig.initDatabaseConnection();
-        Film originalFilm = getFilmByIdFilm(filmId);
+        Film originalFilm = getFilmById(filmId);
         Film film = new Film(originalFilm.getFilmId(), originalFilm.getTitel(), originalFilm.getDauer(), originalFilm.getFsk(), originalFilm.getInhalt(), originalFilm.getErscheinungsDatum());
          switch (attr) {
             case "titel" -> film.setTitel(value);
