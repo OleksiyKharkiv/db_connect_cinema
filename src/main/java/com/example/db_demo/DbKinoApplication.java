@@ -22,7 +22,13 @@ public class DbKinoApplication {
         final FilmService filmService = new FilmService();
         List<Film> filme = filmService.getFilms();
 
-        System.out.println(filmService.getFilmByIdFilm(6L));
+        // System.out.println(filmService.getFilmByIdFilm(11L));
+        filmService.updateFilm(11L, "titel", "Matrix-3");
+        filmService.updateFilm(11L, "dauer", "150");
+        filmService.updateFilm(11L, "fsk_freigabe", "18");
+        filmService.updateFilm(11L, "inhalt", "Freedom fighters Neo, Trinity and Morpheus continue to lead the revolt against the Machine Army, unleashing their arsenal of extraordinary skills and weaponry against the systematic forces of repression and exploitation.");
+        filmService.updateFilm(11L, "erscheinungsjahr", "2004-01-01");
+        System.out.println(filmService.getFilmByIdFilm(11L));
         // Film newFilm = new Film("Matrix-2", 140, 16, "Freedom fighters Neo, Trinity
         // and Morpheus continue to lead the revolt against the Machine Army, unleashing
         // their arsenal of extraordinary skills and weaponry against the systematic

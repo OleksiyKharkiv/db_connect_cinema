@@ -93,6 +93,30 @@ public class FilmService {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
+            // dbConfig.closeDatabaseConnection();
+        }
+        return film;
+    }
+    public Film updateFilm(Long filmId, String attr, String value) throws SQLException {
+        dbConfig.initDatabaseConnection();
+        Film originalFilm = getFilmByIdFilm(filmId);
+        Film film = new Film(originalFilm.getFilmId(), originalFilm.getTitel(), originalFilm.getDauer(), originalFilm.getFsk(), originalFilm.getInhalt(), originalFilm.getErscheinungsDatum());
+         switch (attr) {
+            case "titel" -> film.setTitel(value);
+            case "dauer" -> film.setDauer(Integer.parseInt(value));
+            case "fsk_freigabe" -> film.setFsk(Integer.parseInt(value));
+            case "inhalt" -> film.setInhalt(value);
+            case "erscheinungsjahr" -> film.setErscheinungsDatum(LocalDate.parse(value));
+            default -> throw new IllegalArgumentException("Ungültiges Attribut: " + attr);
+        }
+        try (PreparedStatement statement = dbConfig.connection
+                .prepareStatement("UPDATE film SET " + attr + " = ? WHERE film_id = ?")) {
+            statement.setString(1, value);
+            statement.setLong(2, filmId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
             dbConfig.closeDatabaseConnection();
         }
         return film;
