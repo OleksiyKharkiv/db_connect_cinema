@@ -93,16 +93,20 @@ public class DbKinoApplication {
                     System.out.println("Dauer:");
                     int dauer = scanner.nextInt();
                     scanner.nextLine(); 
+                    System.out.println();
 
                     System.out.println("FSK:");
                     int fsk = scanner.nextInt();
                     scanner.nextLine();
+                    System.out.println();
 
                     System.out.println("Inhalt:");
                     String inhalt = scanner.nextLine();
+                    System.out.println();
 
                     System.out.println("Erscheinungsjahr (YYYY-MM-DD):");
                     String erscheinungsjahr = scanner.nextLine();
+                    System.out.println();
 
                     Film newFilm = new Film(titel, dauer, fsk, inhalt, LocalDate.parse(erscheinungsjahr));
                     filmService.saveFilm(newFilm);
