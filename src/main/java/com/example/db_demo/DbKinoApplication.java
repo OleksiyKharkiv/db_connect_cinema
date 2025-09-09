@@ -6,7 +6,6 @@ import java.util.Scanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.db_demo.model.Film;
 import com.example.db_demo.service.FilmService;
 
 @SpringBootApplication
@@ -21,7 +20,10 @@ public class DbKinoApplication {
         // filmService.updateFilm(11L, "titel", "Matrix-3");
         // filmService.updateFilm(11L, "dauer", "150");
         // filmService.updateFilm(11L, "fsk_freigabe", "18");
-        // filmService.updateFilm(11L, "inhalt", "Freedom fighters Neo, Trinity and Morpheus continue to lead the revolt against the Machine Army, unleashing their arsenal of extraordinary skills and weaponry against the systematic forces of repression and exploitation.");
+        // filmService.updateFilm(11L, "inhalt", "Freedom fighters Neo, Trinity and
+        // Morpheus continue to lead the revolt against the Machine Army, unleashing
+        // their arsenal of extraordinary skills and weaponry against the systematic
+        // forces of repression and exploitation.");
         // filmService.updateFilm(11L, "erscheinungsjahr", "2004-01-01");
         // System.out.println(filmService.getFilmByIdFilm(11L));
 
@@ -56,7 +58,6 @@ public class DbKinoApplication {
         }
     }
 
-    // Подменю для работы с фильмами
     static void filmSubMenu(FilmService filmService, Scanner scanner) throws SQLException {
         boolean backToMenu = false;
         while (!backToMenu) {
