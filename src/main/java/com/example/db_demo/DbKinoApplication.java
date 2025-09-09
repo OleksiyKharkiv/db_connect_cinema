@@ -1,11 +1,13 @@
 package com.example.db_demo;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.db_demo.model.Film;
 import com.example.db_demo.service.FilmService;
 
 @SpringBootApplication
@@ -82,8 +84,30 @@ public class DbKinoApplication {
                     System.out.println(filmService.getFilmById(filmId));
                 }
                 case 3 -> {
-                    // TODO: Film hinzufügen
+                    System.out.println("Film hinzufügen:");
+                    
+                    System.out.println("Titel:");
+                    scanner.nextLine();
+                    String titel = scanner.nextLine();
+
+                    System.out.println("Dauer:");
+                    int dauer = scanner.nextInt();
+                    scanner.nextLine(); 
+
+                    System.out.println("FSK:");
+                    int fsk = scanner.nextInt();
+                    scanner.nextLine();
+
+                    System.out.println("Inhalt:");
+                    String inhalt = scanner.nextLine();
+
+                    System.out.println("Erscheinungsjahr (YYYY-MM-DD):");
+                    String erscheinungsjahr = scanner.nextLine();
+
+                    Film newFilm = new Film(titel, dauer, fsk, inhalt, LocalDate.parse(erscheinungsjahr));
+                    filmService.saveFilm(newFilm);
                 }
+
                 case 4 -> {
                     // TODO: Film bearbeiten
                 }
