@@ -51,12 +51,13 @@ public class FilmService {
 
     public Film saveFilm(Film film) throws SQLException {
         dbConfig.initDatabaseConnection();
-        try (PreparedStatement statement = dbConfig.connection.prepareStatement("INSERT INTO film (titel, dauer, fsk_freigabe, inhalt, erscheinungsjahr) VALUES(\""
-                        + film.getTitel() + "\"," 
-                        + film.getDauer() + "," 
+        try (PreparedStatement statement = dbConfig.connection
+                .prepareStatement("INSERT INTO film (titel, dauer, fsk_freigabe, inhalt, erscheinungsjahr) VALUES(\""
+                        + film.getTitel() + "\","
+                        + film.getDauer() + ","
                         + film.getFsk() + ","
-                        + "\""  + film.getInhalt() + "\"," 
-                        + "\"" + film.getErscheinungsDatum() 
+                        + "\"" + film.getInhalt() + "\","
+                        + "\"" + film.getErscheinungsDatum()
                         + "\")")) {
             // statement.setString(1, film.getTitel());
             // statement.setInt(2, film.getDauer());
@@ -67,6 +68,32 @@ public class FilmService {
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        return film;
+    }
+
+    public Film getFilmByIdFilm(Long id) throws SQLException {
+        Film film = null;
+        dbConfig.initDatabaseConnection();
+        try (PreparedStatement statement = dbConfig.connection
+                .prepareStatement("SELECT * FROM film WHERE film_id = ?")) {
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                film = new Film(
+                        resultSet.getLong("film_id"),
+                        resultSet.getString("titel"),
+                        resultSet.getInt("dauer"),
+                        resultSet.getInt("fsk_freigabe"),
+                        resultSet.getString("inhalt"),
+                        LocalDate.parse(resultSet.getDate("erscheinungsjahr").toString()));
+            } else {
+                throw new SQLException("Film mit der ID " + id + " nicht gefunden.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConfig.closeDatabaseConnection();
         }
         return film;
     }
