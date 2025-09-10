@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.db_demo.model.Film;
+import com.example.db_demo.service.FilmMenu;
 import com.example.db_demo.service.FilmService;
 
 @SpringBootApplication
@@ -51,7 +52,7 @@ public class DbKinoApplication {
                         """);
                 int option = scanner.nextInt();
                 switch (option) {
-                    case 1 -> filmSubMenu(filmService, scanner); // вызываем подменю
+                    case 1 -> FilmMenu.showFilmMenu(filmService, scanner);
                     case 2 -> {
                         System.out.println("Exit");
                         exit = true;
@@ -60,81 +61,5 @@ public class DbKinoApplication {
                 }
             }
         }
-    }
-
-    static void filmSubMenu(FilmService filmService, Scanner scanner) throws SQLException {
-        boolean backToMenu = false;
-        // while (!backToMenu) {
-            System.out.println("Bitte machen Sie Ihre Wahl:");
-            System.out.println("""
-                    1: Alle Filme anzeigen
-                    2: Film anzeigen
-                    3: Film hinzufügen
-                    4: Film bearbeiten
-                    5: Film löschen
-                    6: Zurück zum Hauptmenü
-                    """);
-            int option = scanner.nextInt();
-            switch (option) {
-                case 1 -> {
-                    System.out.println("Alle Filme:");
-                    filmService.getFilms().forEach(System.out::println);
-                }
-                case 2 -> {
-                    System.out.println("Bitte Film ID eingeben:");
-                    Long filmId = scanner.nextLong();
-                    System.out.println(filmService.getFilmById(filmId));
-                }
-                case 3 -> {
-                    System.out.println("Film hinzufügen:");
-                    
-                    System.out.println("Titel:");
-                    scanner.nextLine();
-                    String titel = scanner.nextLine();
-
-                    System.out.println("Dauer:");
-                    int dauer = scanner.nextInt();
-                    scanner.nextLine(); 
-                    System.out.println();
-
-                    System.out.println("FSK:");
-                    int fsk = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println();
-
-                    System.out.println("Inhalt:");
-                    String inhalt = scanner.nextLine();
-                    System.out.println();
-
-                    System.out.println("Erscheinungsjahr (YYYY-MM-DD):");
-                    String erscheinungsjahr = scanner.nextLine();
-                    System.out.println();
-
-                    Film newFilm = new Film(titel, dauer, fsk, inhalt, LocalDate.parse(erscheinungsjahr));
-                    filmService.saveFilm(newFilm);
-                }
-
-                case 4 -> {
-                    System.out.println("Bitte geben Sie den Namen des Films ein, den Sie bearbeiten möchten:");
-                    List<Film> f = new ArrayList<>();
-                    try {
-                        f = filmService.getFilmsByName(scanner.nextLine());
-                    } catch (SQLException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-
-                    f.forEach(System.out::println);
-                    System.out.println("Film bearbeiten:");
-                    System.out.println("Bitte Film ID eingeben:");
-                    // TODO: Film bearbeiten1
-                }
-                case 5 -> {
-                    // TODO: Film löschen
-                }
-                case 6 -> backToMenu = true; // возвращаемся в главное меню
-                default -> System.out.println("Ungültige Option");
-            }
-        // }
     }
 }

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.example.db_demo.config.DBConfig;
 import com.example.db_demo.model.Film;
@@ -156,5 +157,25 @@ public class FilmService {
             dbConfig.closeDatabaseConnection();
         }
         return filme;
+    }
+    public String deleteFilmById(Long id) throws SQLException {
+        System.out.println("Bitte geben Sie  die ID des Films ein, den Sie löschen möchten:");
+        Scanner scanner = new Scanner(System.in);
+        id = scanner.nextLong();
+        String result = "Film mit der ID " + id + " wurde gelöscht.";
+        dbConfig.initDatabaseConnection();
+        try (PreparedStatement statement = dbConfig.connection
+                .prepareStatement("DELETE FROM film WHERE film_id = ?")) {
+            statement.setLong(1, id);
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected == 0) {
+                result = "Film mit der ID " + id + " nicht gefunden.";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConfig.closeDatabaseConnection();
+        }
+        return result;
     }
 }
